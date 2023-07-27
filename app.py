@@ -104,32 +104,33 @@ class RockPaperScissorsGame:
             return 'rock'
 
     def play(self):
-        st.write("Welcome to the Rock-Paper-Scissors Game!")
-        st.write("Players:", ', '.join(self.players))
+    st.write("Welcome to the Rock-Paper-Scissors Game!")
+    st.write("Players:", ', '.join(self.players))
 
-        self.calculate_nash_equilibrium()
+    self.calculate_nash_equilibrium()
 
-        while True:
-            current_player = random.choice(self.players)
-            opponent = self.players[1 - self.players.index(current_player)]
+    while True:
+        current_player = random.choice(self.players)
+        opponent = self.players[1 - self.players.index(current_player)]
 
-            st.write(f"\n{current_player}'s turn.")
+        st.write(f"\n{current_player}'s turn.")
 
-            # Get the Nash equilibrium strategy for the current player
-            strategy = self.get_strategy(current_player)
-            st.write(f"{current_player} chooses: {strategy}")
+        # Get the Nash equilibrium strategy for the current player
+        strategy = self.get_strategy(current_player)
+        st.write(f"{current_player} chooses: {strategy}")
 
-            # Get the Nash equilibrium strategy for the opponent
-            opponent_strategy = self.get_strategy(opponent)
-            st.write(f"{opponent} chooses: {opponent_strategy}")
+        # Get the Nash equilibrium strategy for the opponent
+        opponent_strategy = self.get_strategy(opponent)
+        st.write(f"{opponent} chooses: {opponent_strategy}")
 
-            # Determine the winner
-            if strategy == opponent_strategy:
-                st.write("It's a tie!")
-            elif self.get_beat_strategy(strategy) == opponent_strategy:
-                st.write(f"{current_player} wins!")
-            else:
-                st.write(f"{opponent} wins!")
+        # Determine the winner
+        if strategy == self.get_beat_strategy(opponent_strategy):
+            st.write(f"{current_player} wins!")
+        elif opponent_strategy == self.get_beat_strategy(strategy):
+            st.write(f"{opponent} wins!")
+        else:
+            st.write("It's a tie!")
+
 
 
 def cointoss():
